@@ -21,4 +21,9 @@ constexpr int maxBinarySize = 128;
 constexpr int maxBinarySize = 64;
 #endif
 
+// index and search
+extern void index(const string& txt, const string &fileName);
+extern void build_search(const string &fileName);
+extern vector<string> search(bool count, const vector<string> &pat);
+
 #endif //IPMT_MAIN_H

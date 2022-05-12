@@ -1,4 +1,4 @@
-SRCS = main.cpp
+SRCS = main.cpp sarr.cpp
 
 KERNEL = $(shell uname -s)
 ifeq ($(KERNEL),Linux)
