@@ -157,11 +157,8 @@ void save_file(const string &fileName) {
     wf.write((char*)&sa[0], s * sizeof(sa[0]));
     wf.write((char*)&Llcp[0], s * sizeof(Llcp[0]));
     wf.write((char*)&Rlcp[0], s * sizeof(Rlcp[0]));
+    wf.write((char*)&P[0][0], s * sizeof(P[0][0]));
     wf.write((char*)&lineBreaks[0], lineBreaks.size() * sizeof(lineBreaks[0]));
-
-    for (auto a : P)
-        wf.write((char*)&a[0], s * sizeof(a[0]));
-    
     wf.close();
 }
 
@@ -175,10 +172,12 @@ void read_file(const string &fileName) {
     sa.resize(s);
     Llcp.resize(s);
     Rlcp.resize(s);
+    P.assign(1, vector<int>(s));
 
     rf.read((char*)&sa[0], s * sizeof(sa[0]));
     rf.read((char*)&Llcp[0], s * sizeof(Llcp[0]));
     rf.read((char*)&Rlcp[0], s * sizeof(Rlcp[0]));
+    rf.read((char*)&P[0][0], s * sizeof(P[0][0]));
 
     lineBreaks.clear();
     do {
@@ -186,14 +185,7 @@ void read_file(const string &fileName) {
         rf.read((char*)&lineBreaks[lineBreaks.size() - 1], sizeof(lineBreaks[0]));
     } while(lineBreaks[lineBreaks.size() - 1] != s);
 
-    P.clear();
-    while (!rf.eof()) {
-        P.push_back(vector<int>(s));
-        rf.read((char*)&(*(P.end() - 1))[0], s * sizeof(int));
-    }
-
     rf.close();
-    P.pop_back();
 }
 
 void index(const string& txt, const string &fileName) {
@@ -220,7 +212,6 @@ void build_search(const string &fileName) {
     T.assign(P[0].begin(), P[0].end());
 }
 
-#include <set>
 #include <iostream>
 template<bool count>
 vector<string> search(const vector<string> &pats) {
