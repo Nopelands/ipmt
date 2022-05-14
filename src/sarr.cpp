@@ -164,7 +164,7 @@ void save_file(const string &fileName) {
 
 void read_file(const string &fileName) {
 
-    ifstream rf(fileName, ios::in | ios::binary);
+        ifstream rf(fileName, ios::in | ios::binary);
     int s;
 
     rf.read((char*)&s, sizeof(s));
