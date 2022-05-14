@@ -55,10 +55,10 @@ int main(const int argc, const char *argv[]) {
     }
     else if (func == "zip") {
         string fileName = argv[argc - 1];
-    };
+    }
     else if (func == "unzip") {
         string fileName = argv[argc - 1];
-    };
+    }
     else
         return 1;
 
