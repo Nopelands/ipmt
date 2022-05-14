@@ -75,17 +75,15 @@ void unzip(const string &fileName) {
     ofstream output_file(new_name + ".unlz77");
     if (input_file.is_open()) {
         string search_buffer(search_buffer_size, ' ');
+        char *temp_buffer = new char[search_buffer_bytes + 1];
         while (true) {
-            char *temp_buffer = new char[search_buffer_bytes + 1];
-            memset(temp_buffer, 0, search_buffer_bytes + 1);
             input_file.read(temp_buffer, search_buffer_bytes);
-            string b(temp_buffer);
-            if (b.size() == 0) {
+            if (input_file.eof()) {
                 break;
             }
-            int p = *temp_buffer;
+            int p = *(unsigned char*)temp_buffer;
             input_file.read(temp_buffer, lookahead_buffer_bytes);
-            int l = *temp_buffer;
+            int l = *(unsigned char*)temp_buffer;
             input_file.read(temp_buffer, 1);
             char* c = &temp_buffer[0];
             string prefix = search_buffer.substr(p, l);
