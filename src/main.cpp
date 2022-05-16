@@ -2,7 +2,7 @@
 #include <fstream>
 
 void help() {
-
+// TODO look at deflate
     printf("\
 Usage: ipmt mode [options] (pattern)* file\n\
 *pattern is only used for search mode\n\

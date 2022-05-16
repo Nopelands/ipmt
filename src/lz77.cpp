@@ -1,12 +1,11 @@
 #include "main.h"
 #include <iostream>
 #include <fstream>
-#include <string>
 
 //settings
 
-int search_buffer_bytes = 258;
-int lookahead_buffer_bytes = 258;
+int search_buffer_bytes = 1;
+int lookahead_buffer_bytes = 1;
 int search_buffer_size = 1 << (8*search_buffer_bytes);
 int lookahead_buffer_size = 1 << (8*lookahead_buffer_bytes);
 
