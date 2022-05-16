@@ -5,8 +5,8 @@
 
 //settings
 
-int search_buffer_bytes = 1;
-int lookahead_buffer_bytes = 1;
+int search_buffer_bytes = 258;
+int lookahead_buffer_bytes = 258;
 int search_buffer_size = 1 << (8*search_buffer_bytes);
 int lookahead_buffer_size = 1 << (8*lookahead_buffer_bytes);
 
@@ -37,7 +37,7 @@ pair<int, int> max_prefix_match(const string &search, const string &lookahead) {
     return std::make_pair(p,l);
 }
 
-void zip(const string &file_name) {
+void zip77(const string &file_name) {
     ifstream input_file (file_name);
     ofstream output_file(file_name + ".lz77", ios::binary);
     if (input_file.is_open()) {
@@ -69,7 +69,7 @@ void zip(const string &file_name) {
     } else{ cout << "file not found";}
 }
 
-void unzip(const string &fileName) {
+void unzip77(const string &fileName) {
     ifstream input_file (fileName, ios::binary);
     string new_name = fileName.substr(0, fileName.size() - 5);
     ofstream output_file(new_name + ".unlz77");
