@@ -162,9 +162,12 @@ void save_file(const string &fileName) {
     wf.close();
 }
 
-void read_file(const string &fileName) {
+int read_file(const string &fileName) {
 
-        ifstream rf(fileName, ios::in | ios::binary);
+    ifstream rf(fileName, ios::in | ios::binary);
+    if (!rf.is_open()) {
+        return 1;
+    }
     int s;
 
     rf.read((char*)&s, sizeof(s));
@@ -186,6 +189,7 @@ void read_file(const string &fileName) {
     } while(lineBreaks[lineBreaks.size() - 1] != s);
 
     rf.close();
+    return 0;
 }
 
 void index(const string& txt, const string &fileName) {
@@ -207,9 +211,13 @@ void index(const string& txt, const string &fileName) {
     save_file(fileName);
 }
 
-void build_search(const string &fileName) {
-    read_file(fileName);
+int build_search(const string &fileName) {
+    int rd = read_file(fileName);
+    if (rd == 1) {
+        return 1;
+    }
     T.assign(P[0].begin(), P[0].end());
+    return 0;
 }
 
 #include <iostream>

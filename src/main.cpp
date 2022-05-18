@@ -99,15 +99,19 @@ int main(const int argc, const char *argv[]) {
     }
     if (func == "index") {
         string fileName = file;
-
         ifstream rf(fileName);
-        std::string txt((std::istreambuf_iterator<char>(rf)),
-                         std::istreambuf_iterator<char>());
-        rf.close();
+        if (rf.is_open()) {
+            std::string txt((std::istreambuf_iterator<char>(rf)),
+                            std::istreambuf_iterator<char>());
+            rf.close();
 
-        fileName = fileName.substr(0, fileName.find_last_of('.')) + ".idx";
+            fileName = fileName + ".idx";
 
-        index(txt, fileName);
+            index(txt, fileName);
+        } else {
+            printf("file not found\n");
+            return 1;
+        }
     }else if (func == "search") {
         bool patternFile = pat_arg;
 
@@ -128,7 +132,11 @@ int main(const int argc, const char *argv[]) {
             printf("%s isn't an idx index file\n", fileName.data());
             return 1;
         }
-        build_search(fileName);
+        int bs = build_search(fileName);
+        if (bs == 1) {
+            printf("file not found\n");
+            return 1;
+        }
 
         for (auto l : search(count, pats))
             printf("%s\n", l.c_str());

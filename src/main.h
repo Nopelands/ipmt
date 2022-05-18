@@ -11,7 +11,7 @@ using namespace std;
 
 // index and search
 extern void index(const string& txt, const string &fileName);
-extern void build_search(const string &fileName);
+extern int build_search(const string &fileName);
 extern vector<string> search(bool count, const vector<string> &pat);
 extern void zip77(const string &file_name);
 extern void unzip77(const string &fileName);
