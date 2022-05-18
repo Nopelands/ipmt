@@ -1,4 +1,11 @@
-//
-// Created by phoenix on 16/05/2022.
-//
+#include "main.h"
+#include <iostream>
+#include <fstream>
 
+void zipman(const string &fileName) {
+
+}
+
+void unzipman(const string &fileName) {
+
+}

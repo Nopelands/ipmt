@@ -1,4 +1,4 @@
-SRCS = main.cpp sarr.cpp lz77.cpp #deflate.cpp huffman.cpp
+SRCS = main.cpp sarr.cpp lz77.cpp boyer_moore.cpp shift_or.cpp #deflate.cpp huffman.cpp
 
 KERNEL = $(shell uname -s)
 ifeq ($(KERNEL),Linux)

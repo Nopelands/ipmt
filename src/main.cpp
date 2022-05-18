@@ -45,9 +45,6 @@ void alg_warning() {
     printf("Unknown algorithm\nTry 'ipmt --help' for more information.\n");
 }
 
-void size_warning(const string &pat) {
-    printf("Pattern %s is ignored due to its size.\nPlease, keep pattern size less than %d characters.\n", pat.c_str(), maxBinarySize + 1);
-}
 
 int main(const int argc, const char *argv[]) {
     if (argc <= 1) {
@@ -111,8 +108,7 @@ int main(const int argc, const char *argv[]) {
         fileName = fileName.substr(0, fileName.find_last_of('.')) + ".idx";
 
         index(txt, fileName);
-    }
-    else if (func == "search") {
+    }else if (func == "search") {
         bool patternFile = pat_arg;
 
         vector<string> pats;
@@ -136,8 +132,7 @@ int main(const int argc, const char *argv[]) {
 
         for (auto l : search(count, pats))
             printf("%s\n", l.c_str());
-    }
-    else if (func == "zip") {
+    }else if (func == "zip") {
         string fileName = file;
         if (algorithm == "") {
             zip77(fileName);
@@ -147,26 +142,25 @@ int main(const int argc, const char *argv[]) {
             alg_warning();
             return 1;
         }
-    }
-    else if (func == "unzip") {
+    }else if (func == "unzip") {
         string fileName = file;
-            if (algorithm == "") {
-                if (fileName.substr(fileName.find_last_of('.')) != ".lz77") {
-                    printf("%s isn't an lz77 compressed file\n", fileName.data());
-                    return 1;
-                }
-                unzip77(fileName);
-            } else if (algorithm == "lz") {
-                if (fileName.substr(fileName.find_last_of('.')) != ".lz77") {
-                    printf("%s isn't an lz77 compressed file\n", fileName.data());
-                    return 1;
-                }
-                unzip77(fileName);
-            } else {
-                alg_warning();
+        if (algorithm == "") {
+            if (fileName.substr(fileName.find_last_of('.')) != ".lz77") {
+                printf("%s isn't an lz77 compressed file\n", fileName.data());
                 return 1;
             }
+            unzip77(fileName);
+        } else if (algorithm == "lz") {
+            if (fileName.substr(fileName.find_last_of('.')) != ".lz77") {
+                printf("%s isn't an lz77 compressed file\n", fileName.data());
+                return 1;
+            }
+            unzip77(fileName);
+        } else {
+            alg_warning();
+            return 1;
         }
+    }
     else
         return 1;
 
