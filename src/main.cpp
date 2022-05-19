@@ -2,9 +2,8 @@
 #include <fstream>
 
 void help() {
-// TODO look at deflate
     printf("\
-Usage: ipmt mode [options] (pattern)* file\n\
+Usage: ipmt mode [OPTION]... (pattern)* file\n\
 *pattern is only used for search mode\n\
 \n\
 index: Create index file for subsequent search.\n\
@@ -20,10 +19,6 @@ unzip: Decompress file.\n\
 Example: ipmt unzip text.lz77\n\
 \n\
 Pattern selection and interpretation:\n\
-  -a, --algorithm       force usage of selected algorithm. Options:\n\
-                            lz,  lz77\n\
-                            hu,  huffman\n\
-                            de,  deflate (default)\n\
   -p, --pattern         use pattern file instead of pattern string\n\
 \n\
 Miscellaneous:\n\
